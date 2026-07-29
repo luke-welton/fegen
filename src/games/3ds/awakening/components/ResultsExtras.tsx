@@ -32,4 +32,3 @@ export function AwakeningResultsExtras({ gameData, results }: AwakeningResultsEx
 		</div>
 	);
 }
-

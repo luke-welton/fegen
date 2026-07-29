@@ -196,4 +196,3 @@ export function generateAwakeningTeam(gameData: AwakeningGameData, options: Awak
 	const team = rollClasses();
 	return { team, pairings: context.pairings, avatarGender };
 }
-
