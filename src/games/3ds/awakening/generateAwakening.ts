@@ -1,4 +1,4 @@
-import { createClassLookup, createUnitLookup, pickUnits } from "../../../core/generator";
+import { createClassLookup, createUnitLookup, pickUnits } from "../../../core/generation";
 import type { ClassId, Gender } from "../../../core/types";
 import { oppositeGender, pick, shuffle } from "../../../core/utils";
 import { UnitPairing } from "../shared/types";

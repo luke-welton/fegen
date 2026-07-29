@@ -1,6 +1,8 @@
 const genderOptions = ["M", "F", "random"] as const;
 export type GenderOptions = typeof genderOptions[number];
 
+// TODO: Need to actually use this file in the Awakening options UI
+
 export function AvatarGenderOption(props: {
 	avatarName: string;
 	value: GenderOptions;

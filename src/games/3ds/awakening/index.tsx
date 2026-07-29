@@ -1,7 +1,7 @@
 import type { GameModule } from "../../GameModule";
 import { AwakeningOptionsFields, AwakeningResultsExtras, AwakeningRosterCard } from "./components";
 import { AwakeningData } from "./data";
-import { generateAwakeningTeam } from "./generator";
+import { generateAwakeningTeam } from "./generateAwakening";
 import type { AwakeningGameData, AwakeningMember, AwakeningOptions, AwakeningResults, AwakeningUnit } from "./types";
 
 /** Registers Awakening's data/generator/options/results UI with the game registry (see `games/index.ts`). */
