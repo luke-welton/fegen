@@ -176,7 +176,13 @@ export function generateAwakeningTeam(gameData: AwakeningGameData, options: Awak
 
 		return context.roster.map((unit) => {
 			const rawPool = getRawClassPool(unit);
-			const promotions = rawPool.flatMap((clsId) => findClassById(clsId)?.promotionIds ?? []);
+			// Base-tier classes expand to their promoted forms; already-promoted/single-tier
+			// classes (e.g. Taguel, Manakete, Dancer) have no promotionIds and are kept as-is.
+			const promotions = rawPool.flatMap((clsId) => {
+				const cls = findClassById(clsId);
+				if (!cls) return [];
+				return cls.tier === "promoted" ? [clsId] : (cls.promotionIds ?? []);
+			});
 			const classPool = [...new Set(promotions)];
 
 			const assignedClass = findClassById(pick(classPool))!;
