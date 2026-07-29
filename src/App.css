@@ -20,10 +20,9 @@
 
 .options-panel {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column;
 	gap: 1.5rem;
-	align-items: flex-end;
-	justify-content: center;
+	align-items: stretch;
 	background: #1a1a1a;
 	border: 1px solid #333;
 	border-radius: 12px;
@@ -96,12 +95,9 @@
 	text-align: left;
 }
 
-.roster-card.role-avatar {
-	border-color: #646cff;
-}
-
+.roster-card.role-avatar,
 .roster-card.role-child {
-	border-color: #b06ad1;
+	border: none;
 }
 
 .roster-card-name {

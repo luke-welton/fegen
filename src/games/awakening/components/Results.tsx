@@ -22,6 +22,13 @@ export function AwakeningResults({ gameData, results }: AwakeningResultsProps) {
 	const { team, pairings, avatarGender } = results;
 	const unitById = useMemo(() => new Map(gameData.units.map((u) => [u.id, u] as const)), [gameData]);
 
+	// Display the roster in the same order the units are listed in data.tsx,
+	// rather than the randomized roster-pick order.
+	const orderedTeam = useMemo(() => {
+		const orderIndex = new Map(gameData.units.map((u, i) => [u.id, i] as const));
+		return [...team].sort((a, b) => (orderIndex.get(a.unit.id) ?? 0) - (orderIndex.get(b.unit.id) ?? 0));
+	}, [team, gameData]);
+
 	const unitGenderLabel = (unit: AwakeningUnit): string => {
 		if (unit.gender === "either") {
 			return unit.role === "avatar" ? genderLabel(avatarGender) : genderLabel(oppositeGender(avatarGender));
@@ -56,7 +63,7 @@ export function AwakeningResults({ gameData, results }: AwakeningResultsProps) {
 			)}
 
 			<ul className="roster-grid">
-				{team.map((m: AwakeningMember) => {
+				{orderedTeam.map((m: AwakeningMember) => {
 					const parents = parentsOf(m.unit);
 					return (
 						<li key={m.unit.id} className={`roster-card role-${m.unit.role}`}>
