@@ -13,6 +13,14 @@ function App() {
 
 	const forceableUnits = useMemo(() => gameModule.data.units.filter((u) => u.forcedDeploy), [gameModule]);
 
+	// Display the roster in each game's own canonical unit order rather than the
+	// (possibly randomized) pick order returned by generate().
+	const orderedTeam = useMemo(() => {
+		if (!results) return [];
+		const orderIndex = new Map(gameModule.data.units.map((u, i) => [u.id, i] as const));
+		return [...results.team].sort((a, b) => (orderIndex.get(a.unit.id) ?? 0) - (orderIndex.get(b.unit.id) ?? 0));
+	}, [results, gameModule]);
+
 	// Reset options (and any generated results) whenever the game changes, since
 	// option shapes, team size, and unit ids aren't shared across games.
 	useEffect(() => {
@@ -84,12 +92,8 @@ function App() {
 								<gameModule.ResultsExtras gameData={gameModule.data} results={results} />
 							)}
 							<ul className="roster-grid">
-								{gameModule.toRosterCards(gameModule.data, results).map((card) => (
-									<li key={card.id} className={`roster-card${card.className ? ` ${card.className}` : ""}`}>
-										<div className="roster-card-name">{card.name}</div>
-										<div className="roster-card-meta">{card.meta}</div>
-										{card.note && <div className="roster-card-note">{card.note}</div>}
-									</li>
+								{orderedTeam.map((member) => (
+									<gameModule.RosterCard key={member.unit.id} gameData={gameModule.data} member={member} results={results} />
 								))}
 							</ul>
 						</section>

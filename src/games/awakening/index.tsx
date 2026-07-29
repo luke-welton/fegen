@@ -1,8 +1,7 @@
 import type { GameModule } from "../GameModule";
-import { AwakeningOptionsFields, AwakeningResultsExtras } from "./components";
+import { AwakeningOptionsFields, AwakeningResultsExtras, AwakeningRosterCard } from "./components";
 import { AwakeningData } from "./data";
 import { generateAwakeningTeam } from "./generator";
-import { toAwakeningRosterCards } from "./rosterCard";
 import type { AwakeningGameData, AwakeningMember, AwakeningOptions, AwakeningResults, AwakeningUnit } from "./types";
 
 /** Registers Awakening's data/generator/options/results UI with the game registry (see `games/index.ts`). */
@@ -15,6 +14,6 @@ export const AwakeningGameModule: GameModule<AwakeningUnit, AwakeningGameData, A
 		rollPairings: true,
 	},
 	OptionsFields: ({ value, onChange }) => <AwakeningOptionsFields value={value} onChange={onChange} />,
-	toRosterCards: (gameData, results) => toAwakeningRosterCards(gameData, results),
+	RosterCard: ({ gameData, member, results }) => <AwakeningRosterCard gameData={gameData} member={member} results={results} />,
 	ResultsExtras: ({ gameData, results }) => <AwakeningResultsExtras gameData={gameData} results={results} />,
 };
