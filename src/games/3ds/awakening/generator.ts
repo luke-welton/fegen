@@ -4,7 +4,6 @@ import { oppositeGender, pick, shuffle } from "../../../core/utils";
 import { UnitPairing } from "../shared/types";
 import type { AwakeningGameData, AwakeningMember, AwakeningOptions, AwakeningResults, AwakeningUnit } from "./types";
 
-
 interface AwakeningContext {
 	avatarGender: Gender;
 	roster: AwakeningUnit[];

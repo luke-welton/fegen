@@ -49,5 +49,3 @@ export interface GameModule<
 
 /** Erased module type used at the registry boundary — see the `GameModule` doc comment. */
 export type AnyGameModule = GameModule;
-
-

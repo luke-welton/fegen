@@ -1,7 +1,6 @@
 import { ClassDef } from "../ClassDef";
 import { Unit } from "../Unit";
 
-
 export interface GameData<TUnit extends Unit = Unit> {
 	id: string;
 	name: string;
