@@ -1,0 +1,10 @@
+/* Awakening-specific roster card styling: border color hints at the unit's
+ * resolved gender (accounting for avatar/Morgan's "either" gender). */
+
+.roster-card.gender-M {
+	border-color: #646cff;
+}
+
+.roster-card.gender-F {
+	border-color: #b06ad1;
+}

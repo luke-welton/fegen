@@ -17,7 +17,7 @@ export function RosterCard({ name, meta, note, className }: RosterCardProps) {
 	return (
 		<li className={`roster-card${className ? ` ${className}` : ""}`}>
 			<div className="roster-card-name">{name}</div>
-			<div className="roster-card-meta">{meta}</div>
+			{meta && <div className="roster-card-meta">{meta}</div>}
 			{note && <div className="roster-card-note">{note}</div>}
 		</li>
 	);

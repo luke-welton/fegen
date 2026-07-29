@@ -2,10 +2,7 @@ import { RosterCard } from "../../../core/components/RosterCard";
 import { Gender } from "../../../core/types";
 import { oppositeGender } from "../../../core/utils";
 import type { AwakeningGameData, AwakeningMember, AwakeningResults, AwakeningUnit } from "../types";
-
-function genderLabel(gender: Gender): string {
-	return gender === "M" ? "Male" : "Female";
-}
+import "./RosterCard.css";
 
 interface AwakeningRosterCardProps {
 	gameData: AwakeningGameData;
@@ -14,20 +11,21 @@ interface AwakeningRosterCardProps {
 }
 
 /**
- * Awakening's roster card: resolves the avatar/Morgan gender label, shows
- * the assigned class, and adds a "Parents: X & Y" note for children — built
- * on top of the generic `RosterCard` rather than duplicating its markup.
+ * Awakening's roster card: resolves the avatar/Morgan gender (used for a
+ * gender-colored border), shows the assigned class, and adds a "Parents: X
+ * & Y" note for children — built on top of the generic `RosterCard` rather
+ * than duplicating its markup.
  */
 export function AwakeningRosterCard({ gameData, member, results }: AwakeningRosterCardProps) {
 	const { unit, assignedClass } = member;
 	const { pairings, avatarGender } = results;
 
-	const unitGenderLabel = (u: AwakeningUnit): string => {
+	const resolveUnitGender = (u: AwakeningUnit): Gender => {
 		if (u.gender === "either") {
-			return u.role === "avatar" ? genderLabel(avatarGender) : genderLabel(oppositeGender(avatarGender));
+			return u.role === "avatar" ? avatarGender : oppositeGender(avatarGender);
 		}
 
-		return genderLabel(u.gender);
+		return u.gender;
 	};
 
 	const parents =
@@ -45,9 +43,9 @@ export function AwakeningRosterCard({ gameData, member, results }: AwakeningRost
 	return (
 		<RosterCard
 			name={unit.name}
-			meta={`${unitGenderLabel(unit)} \u00b7 ${assignedClass.name}`}
+			meta={assignedClass.name}
 			note={note}
-			className={`role-${unit.role}`}
+			className={`role-${unit.role} gender-${resolveUnitGender(unit)}`}
 		/>
 	);
 }

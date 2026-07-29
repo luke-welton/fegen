@@ -18,11 +18,20 @@ export function createClassLookup<TUnit extends Unit, TClassDef extends ClassDef
 	};
 }
 
-/** Picks a random roster of `teamSize` units, honoring any forced-included unit ids. */
+/**
+ * Picks a random roster of `teamSize` units, honoring any forced-included
+ * unit ids, and returns them in the game's own canonical `gameData.units`
+ * order (not pick order) — so per-game generate functions that build their
+ * results off this roster (e.g. `generateAwakeningTeam`) return an
+ * already-ordered team with no further sorting needed by callers.
+ */
 export function pickUnits<TUnit extends Unit>(gameData: GameData<TUnit>, forcedUnitIds: string[] = []): TUnit[] {
 	const { findUnitById } = createUnitLookup(gameData);
 	const forcedUnits = forcedUnitIds.map((id) => findUnitById(id)).filter((u): u is TUnit => !!u);
 	const remainingSlots = gameData.teamSize - forcedUnits.length;
 	const otherUnits = shuffle(gameData.units.filter((u) => !forcedUnitIds.includes(u.id))).slice(0, remainingSlots);
-	return [...forcedUnits, ...otherUnits];
+	const picked = [...forcedUnits, ...otherUnits];
+
+	const orderIndex = new Map(gameData.units.map((u, i) => [u.id, i] as const));
+	return picked.sort((a, b) => (orderIndex.get(a.id) ?? 0) - (orderIndex.get(b.id) ?? 0));
 }
