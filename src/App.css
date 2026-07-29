@@ -106,6 +106,10 @@
 	font-size: 0.95rem;
 }
 
+.checkbox-option-disabled {
+	opacity: 0.5;
+}
+
 .tooltip-row {
 	display: flex;
 	align-items: center;
