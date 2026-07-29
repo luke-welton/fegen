@@ -78,7 +78,21 @@ function App() {
 
 				<div className="results-panel">
 					{results ? (
-						<gameModule.Results gameData={gameModule.data} results={results} />
+						<section className="results">
+							<h2>Your Team</h2>
+							{gameModule.ResultsExtras && (
+								<gameModule.ResultsExtras gameData={gameModule.data} results={results} />
+							)}
+							<ul className="roster-grid">
+								{gameModule.toRosterCards(gameModule.data, results).map((card) => (
+									<li key={card.id} className={`roster-card${card.className ? ` ${card.className}` : ""}`}>
+										<div className="roster-card-name">{card.name}</div>
+										<div className="roster-card-meta">{card.meta}</div>
+										{card.note && <div className="roster-card-note">{card.note}</div>}
+									</li>
+								))}
+							</ul>
+						</section>
 					) : (
 						<p className="results-placeholder">Generate a team to see your results here.</p>
 					)}

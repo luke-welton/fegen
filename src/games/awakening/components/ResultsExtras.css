@@ -1,0 +1,20 @@
+/* Styling for Awakening's marriage-pairings UI (the "Pairings" list rendered
+   above the generic roster grid) — specific to games with a pairing
+   mechanic, so it lives alongside the component that renders it rather than
+   in the app-wide stylesheet. The roster cards themselves (including the
+   generic "note" line used for "Parents: X & Y") are styled generically in
+   App.css since App.tsx renders them. */
+
+.pairings-block {
+	background: var(--panel-bg);
+	border: 1px solid var(--panel-border);
+	border-radius: 12px;
+	padding: 1rem 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.pairings-list {
+	columns: 2;
+	padding-left: 1.2rem;
+	margin: 0.5rem 0 0;
+}

@@ -12,6 +12,17 @@ export interface GameResultsProps<TGameData extends GameData, TResults> {
 	results: TResults;
 }
 
+/** Generic view data for a single roster card — enough for `App.tsx` to render the roster grid with no game-specific knowledge. */
+export interface RosterCardView {
+	id: string;
+	name: string;
+	meta: string;
+	/** Optional extra line (e.g. Awakening's "Parents: X & Y"). */
+	note?: string;
+	/** Optional extra class name for game-specific styling hooks. */
+	className?: string;
+}
+
 /**
  * Per-game plugin contract: a game's data, a generate function, its default
  * options, and the UI needed to configure/display it. Every function member
@@ -35,9 +46,12 @@ export interface GameModule<
 	defaultOptions: TOptions;
 	/** Controls for whatever extra options this game defines (e.g. avatar gender). */
 	OptionsFields(props: GameOptionsFieldsProps<TOptions>): ReactElement | null;
-	/** Renders this game's generated team. */
-	Results(props: GameResultsProps<TGameData, TResults>): ReactElement | null;
+	/** Converts a generated team into the generic card data `App.tsx` renders in the roster grid, in display order. */
+	toRosterCards(gameData: TGameData, results: TResults): RosterCardView[];
+	/** Renders whatever game-specific extras belong above the roster grid (e.g. Awakening's rolled pairings). Optional — not every game has any. */
+	ResultsExtras?(props: GameResultsProps<TGameData, TResults>): ReactElement | null;
 }
 
 /** Erased module type used at the registry boundary — see the `GameModule` doc comment. */
 export type AnyGameModule = GameModule;
+
