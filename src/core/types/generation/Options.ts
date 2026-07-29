@@ -1,7 +1,6 @@
 import type { Gender } from "../Unit";
 
 export interface GenerationOptions {
-	teamSize: number;
 	forcedUnitIds: string[];
 }
 

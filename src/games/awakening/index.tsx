@@ -10,7 +10,6 @@ export const AwakeningGameModule: GameModule<AwakeningUnit, AwakeningGameData, A
 	data: AwakeningData,
 	generate: (options) => generateAwakeningTeam(AwakeningData, options),
 	defaultOptions: {
-		teamSize: AwakeningData.teamSize,
 		forcedUnitIds: ["chrom"],
 		avatarGender: "random",
 		rollPairings: true,

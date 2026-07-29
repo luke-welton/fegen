@@ -19,10 +19,10 @@ export function createClassLookup<TUnit extends Unit, TClassDef extends ClassDef
 }
 
 /** Picks a random roster of `teamSize` units, honoring any forced-included unit ids. */
-export function pickUnits<TUnit extends Unit>(gameData: GameData<TUnit>, teamSize: number, forcedUnitIds: string[] = []): TUnit[] {
+export function pickUnits<TUnit extends Unit>(gameData: GameData<TUnit>, forcedUnitIds: string[] = []): TUnit[] {
 	const { findUnitById } = createUnitLookup(gameData);
 	const forcedUnits = forcedUnitIds.map((id) => findUnitById(id)).filter((u): u is TUnit => !!u);
-	const remainingSlots = teamSize - forcedUnits.length;
+	const remainingSlots = gameData.teamSize - forcedUnits.length;
 	const otherUnits = shuffle(gameData.units.filter((u) => !forcedUnitIds.includes(u.id))).slice(0, remainingSlots);
 	return [...forcedUnits, ...otherUnits];
 }

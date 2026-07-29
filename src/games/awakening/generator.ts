@@ -25,7 +25,7 @@ export function generateAwakeningTeam(gameData: AwakeningGameData, options: Awak
 	const resolveAvatarGender = (): Gender => (options.avatarGender === "random" ? pick<Gender>(["M", "F"]) : options.avatarGender);
 
 	const avatarGender = resolveAvatarGender();
-	const roster = pickUnits(gameData, options.teamSize, options.forcedUnitIds);
+	const roster = pickUnits(gameData, options.forcedUnitIds);
 	const context: AwakeningContext = {
 		avatarGender,
 		roster,
