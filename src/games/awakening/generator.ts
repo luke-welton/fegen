@@ -81,6 +81,7 @@ export function generateAwakeningTeam(gameData: AwakeningGameData, options: Awak
 		}
 
 		// 1. Resolve pairings required to determine each rostered child's classes.
+		const rosterIds = new Set(context.roster.map((u) => u.id));
 		const childrenInRoster = context.roster.filter((u) => u.role === "child" && u.fixedParentId);
 		for (const child of shuffle(childrenInRoster)) {
 			const fixedParent = findUnitById(child.fixedParentId!);
@@ -90,7 +91,11 @@ export function generateAwakeningTeam(gameData: AwakeningGameData, options: Awak
 			if (!spouseId) {
 				const candidates = eligibleSpouseCandidates(fixedParent);
 				if (candidates.length > 0) {
-					const spouse = pick(candidates);
+					// Prefer variable parents who are already on the roster, when possible.
+					const rosterCandidates = options.preferRosterParents
+						? candidates.filter((u) => rosterIds.has(u.id))
+						: [];
+					const spouse = pick(rosterCandidates.length > 0 ? rosterCandidates : candidates);
 					recordPairing(fixedParent, spouse);
 					spouseId = spouse.id;
 				}

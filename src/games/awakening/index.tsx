@@ -12,6 +12,7 @@ export const AwakeningGameModule: GameModule<AwakeningUnit, AwakeningGameData, A
 		forcedUnitIds: ["chrom"],
 		avatarGender: "random",
 		rollPairings: true,
+		preferRosterParents: true,
 	},
 	OptionsFields: ({ value, onChange }) => <AwakeningOptionsFields value={value} onChange={onChange} />,
 	RosterCard: ({ gameData, member, results }) => <AwakeningRosterCard gameData={gameData} member={member} results={results} />,

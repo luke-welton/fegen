@@ -1,3 +1,4 @@
+import { WithTooltip } from "../../../core/components/WithTooltip";
 import { Gender } from "../../../core/types";
 import type { AwakeningOptions } from "../types";
 
@@ -43,8 +44,19 @@ export function AwakeningOptionsFields({ value, onChange }: AwakeningOptionsFiel
 						checked={value.rollPairings}
 						onChange={(e) => onChange({ ...value, rollPairings: e.target.checked })}
 					/>
-					Roll pairings (determines children's class options)
+					Roll Pairings
 				</label>
+
+				<WithTooltip tooltip="The algorithm determines characters before pairings. This will make it favor pairing children's fixed parents with a potential parent already on the roster, when possible.">
+					<label className="checkbox-option">
+						<input
+							type="checkbox"
+							checked={value.preferRosterParents}
+							onChange={(e) => onChange({ ...value, preferRosterParents: e.target.checked })}
+						/>
+						Prefer Roster Parents
+					</label>
+				</WithTooltip>
 			</div>
 		</>
 	);

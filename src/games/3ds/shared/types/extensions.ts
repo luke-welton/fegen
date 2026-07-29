@@ -30,6 +30,9 @@ export interface FateswakeningClassDef extends ClassDef {
 export interface FateswakeningOptions extends AvatarGenerationOptions {
 	/** Whether to roll marriage pairings, which affects children's class pools. */
 	rollPairings: boolean;
+
+	/** When rolling pairings, prefer picking a child's variable parent from units already on the roster, when possible. */
+	preferRosterParents: boolean;
 }
 
 export interface FateswakeningResults<
