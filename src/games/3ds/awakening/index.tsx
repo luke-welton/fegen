@@ -1,4 +1,4 @@
-import type { GameModule } from "../GameModule";
+import type { GameModule } from "../../GameModule";
 import { AwakeningOptionsFields, AwakeningResultsExtras, AwakeningRosterCard } from "./components";
 import { AwakeningData } from "./data";
 import { generateAwakeningTeam } from "./generator";

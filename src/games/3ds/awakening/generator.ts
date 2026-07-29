@@ -1,7 +1,7 @@
-import { createClassLookup, createUnitLookup, pickUnits } from "../../core/generator";
-import type { ClassId, Gender } from "../../core/types";
-import { oppositeGender, pick, shuffle } from "../../core/utils";
-import { UnitPairing } from "../3ds/shared/types";
+import { createClassLookup, createUnitLookup, pickUnits } from "../../../core/generator";
+import type { ClassId, Gender } from "../../../core/types";
+import { oppositeGender, pick, shuffle } from "../../../core/utils";
+import { UnitPairing } from "../shared/types";
 import type { AwakeningGameData, AwakeningMember, AwakeningOptions, AwakeningResults, AwakeningUnit } from "./types";
 
 

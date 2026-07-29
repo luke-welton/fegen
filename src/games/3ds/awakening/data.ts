@@ -1,4 +1,4 @@
-import { ReclassableGameData } from "../../core/types/generation";
+import { ReclassableGameData } from "../../../core/types/generation";
 import type { AwakeningClassDef, AwakeningUnit } from "./types";
 
 // NOTE: Class pools are a reasonable approximation of each character's

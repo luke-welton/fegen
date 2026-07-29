@@ -1,6 +1,6 @@
-import { RosterCard } from "../../../core/components/RosterCard";
-import { Gender } from "../../../core/types";
-import { oppositeGender } from "../../../core/utils";
+import { RosterCard } from "../../../../core/components/RosterCard";
+import { Gender } from "../../../../core/types";
+import { oppositeGender } from "../../../../core/utils";
 import type { AwakeningGameData, AwakeningMember, AwakeningResults, AwakeningUnit } from "../types";
 import "./RosterCard.css";
 

@@ -1,5 +1,5 @@
 import type { GameData } from "../core/types/generation";
-import { AwakeningGameModule } from "./awakening";
+import { AwakeningGameModule } from "./3ds/awakening";
 import type { AnyGameModule } from "./GameModule";
 
 export type { AnyGameModule, GameModule, GameOptionsFieldsProps, GameResultsProps } from "./GameModule";

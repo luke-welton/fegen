@@ -1,6 +1,6 @@
-import type { UnitId } from "../../core/types";
-import { ReclassableGameData, ReclassableTeamMember } from "../../core/types/generation";
-import { FateswakeningClassDef, FateswakeningOptions, FateswakeningResults, FateswakeningUnit } from "../3ds/shared/types";
+import { UnitId } from "../../../core/types";
+import { ReclassableGameData, ReclassableTeamMember } from "../../../core/types/generation";
+import { FateswakeningUnit, FateswakeningClassDef, FateswakeningOptions, FateswakeningResults } from "../shared/types";
 
 export interface AwakeningUnit extends FateswakeningUnit {
 	// The unit's marriage candidates, if any. This is used to determine which units can be paired with each other during team generation.

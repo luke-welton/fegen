@@ -1,5 +1,5 @@
-import { WithTooltip } from "../../../core/components/WithTooltip";
-import { Gender } from "../../../core/types";
+import { WithTooltip } from "../../../../core/components/WithTooltip";
+import { Gender } from "../../../../core/types";
 import type { AwakeningOptions } from "../types";
 
 interface AwakeningOptionsFieldsProps {
