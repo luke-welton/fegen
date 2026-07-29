@@ -47,7 +47,7 @@ export function AwakeningOptionsFields({ value, onChange }: AwakeningOptionsFiel
 					Roll Pairings
 				</label>
 
-				<WithTooltip tooltip="The algorithm determines characters before pairings. This will make it favor pairing children's fixed parents with a potential parent already on the roster, when possible.">
+				<WithTooltip tooltip="The algorithm determines characters before pairings. This option will make it favor pairing children's fixed parents with a potential parent already on the roster, when possible.">
 					<label className={`checkbox-option${value.rollPairings ? "" : " checkbox-option-disabled"}`}>
 						<input
 							type="checkbox"

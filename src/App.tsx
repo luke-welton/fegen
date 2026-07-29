@@ -64,7 +64,7 @@ function App() {
 											checked={options.forcedUnitIds.includes(u.id)}
 											onChange={(e) => toggleForcedUnit(u.id, e.target.checked)}
 										/>
-										Force {u.name} to deploy
+										Always Include {u.name}
 									</label>
 								))}
 							</div>
