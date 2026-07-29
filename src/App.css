@@ -2,6 +2,13 @@
 	max-width: 960px;
 	margin: 0 auto;
 	padding: 2rem;
+	width: 100%;
+}
+
+@media (min-width: 900px) {
+	#root {
+		max-width: 1100px;
+	}
 }
 
 .app-header {
@@ -14,8 +21,16 @@
 }
 
 .subtitle {
-	color: #888;
+	color: var(--text-muted);
 	margin-top: 0;
+}
+
+.app-body {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	align-items: stretch;
+	min-width: 0;
 }
 
 .options-panel {
@@ -23,11 +38,39 @@
 	flex-direction: column;
 	gap: 1.5rem;
 	align-items: stretch;
-	background: #1a1a1a;
-	border: 1px solid #333;
+	background: var(--panel-bg);
+	border: 1px solid var(--panel-border);
 	border-radius: 12px;
 	padding: 1.5rem;
-	margin-bottom: 2rem;
+	min-width: 0;
+}
+
+.results-panel {
+	min-width: 0;
+}
+
+.results-placeholder {
+	color: var(--text-muted);
+}
+
+/* Side-by-side layout (input on the left, results on the right) on desktop
+   only; on narrower viewports the two panels stack, input first. */
+@media (min-width: 900px) {
+	.app-body {
+		flex-direction: row;
+		align-items: flex-start;
+	}
+
+	.options-panel {
+		flex: 0 0 320px;
+		position: sticky;
+		top: 1.5rem;
+	}
+
+	.results-panel {
+		flex: 1;
+		min-width: 0;
+	}
 }
 
 .option-group {
@@ -39,21 +82,28 @@
 
 .group-label {
 	font-size: 0.9rem;
-	color: #ccc;
+	color: var(--text-muted-strong);
 }
 
 .radio-row {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 0.75rem;
 }
 
-.radio-option,
-.checkbox-option {
+.radio-option {
 	display: flex;
 	align-items: center;
 	gap: 0.35rem;
 	font-size: 0.95rem;
 	white-space: nowrap;
+}
+
+.checkbox-option {
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+	font-size: 0.95rem;
 }
 
 .generate-button {
@@ -65,8 +115,8 @@
 }
 
 .pairings-block {
-	background: #1a1a1a;
-	border: 1px solid #333;
+	background: var(--panel-bg);
+	border: 1px solid var(--panel-border);
 	border-radius: 12px;
 	padding: 1rem 1.5rem;
 	margin-bottom: 1.5rem;
@@ -88,8 +138,8 @@
 }
 
 .roster-card {
-	background: #1a1a1a;
-	border: 1px solid #333;
+	background: var(--panel-bg);
+	border: 1px solid var(--panel-border);
 	border-radius: 10px;
 	padding: 0.75rem 1rem;
 	text-align: left;
@@ -105,12 +155,12 @@
 }
 
 .roster-card-meta {
-	color: #bbb;
+	color: var(--text-muted-strong);
 	font-size: 0.9rem;
 }
 
 .roster-card-parents {
-	color: #999;
+	color: var(--text-muted);
 	font-size: 0.8rem;
 	margin-top: 0.35rem;
 }

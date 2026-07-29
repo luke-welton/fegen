@@ -38,44 +38,52 @@ function App() {
 				<p className="subtitle">Randomly assemble a squad &mdash; built to grow beyond Awakening.</p>
 			</header>
 
-			<section className="options-panel">
-				<div className="option-group">
-					<label htmlFor="game-select">Game</label>
-					<select id="game-select" value={gameId} onChange={(e) => setGameId(e.target.value)}>
-						{games.map((g) => (
-							<option key={g.id} value={g.id}>
-								{g.name}
-							</option>
-						))}
-					</select>
-				</div>
-
-				<gameModule.OptionsFields value={options} onChange={setOptions} />
-
-				{forceableUnits.length > 0 && (
+			<div className="app-body">
+				<section className="options-panel">
 					<div className="option-group">
-						<span className="group-label">Forced Deploys</span>
-						<div className="radio-row">
-							{forceableUnits.map((u) => (
-								<label key={u.id} className="checkbox-option">
-									<input
-										type="checkbox"
-										checked={options.forcedUnitIds.includes(u.id)}
-										onChange={(e) => toggleForcedUnit(u.id, e.target.checked)}
-									/>
-									Force {u.name} to deploy
-								</label>
+						<label htmlFor="game-select">Game</label>
+						<select id="game-select" value={gameId} onChange={(e) => setGameId(e.target.value)}>
+							{games.map((g) => (
+								<option key={g.id} value={g.id}>
+									{g.name}
+								</option>
 							))}
-						</div>
+						</select>
 					</div>
-				)}
 
-				<button className="generate-button" onClick={handleGenerate}>
-					Generate Team
-				</button>
-			</section>
+					<gameModule.OptionsFields value={options} onChange={setOptions} />
 
-			{results && <gameModule.Results gameData={gameModule.data} results={results} />}
+					{forceableUnits.length > 0 && (
+						<div className="option-group">
+							<span className="group-label">Forced Deploys</span>
+							<div className="radio-row">
+								{forceableUnits.map((u) => (
+									<label key={u.id} className="checkbox-option">
+										<input
+											type="checkbox"
+											checked={options.forcedUnitIds.includes(u.id)}
+											onChange={(e) => toggleForcedUnit(u.id, e.target.checked)}
+										/>
+										Force {u.name} to deploy
+									</label>
+								))}
+							</div>
+						</div>
+					)}
+
+					<button className="generate-button" onClick={handleGenerate}>
+						Generate Team
+					</button>
+				</section>
+
+				<div className="results-panel">
+					{results ? (
+						<gameModule.Results gameData={gameModule.data} results={results} />
+					) : (
+						<p className="results-placeholder">Generate a team to see your results here.</p>
+					)}
+				</div>
+			</div>
 		</div>
 	);
 }
